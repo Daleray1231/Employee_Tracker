@@ -15,6 +15,28 @@ connection.connect((err) => {
     displayMenu();
 });
 
+const viewAllEmployeesQuery = `
+    SELECT employees.id AS id, employees.first_name AS first_name, employees.last_name AS last_name, roles.title AS title, department.department_name AS department, roles.salary AS salary, CONCAT(managers.first_name, " ", managers.last_name) AS manager
+    FROM employees
+    JOIN roles ON employees.role_id = roles.id
+    JOIN department ON roles.department_id = department.id
+    LEFT JOIN employees AS managers ON employees.manager_id = managers.id;
+`;
+
+function viewAllEmployees() {
+    connection.query(viewAllEmployeesQuery, (err, results) => {
+        if (err) {
+            console.error(err);
+        } else {
+            console.log('');
+            console.table(results);
+            displayMenu();
+        }
+    });
+}
+
+
+
 function displayMenu() {
     inquirer.prompt([
         {
@@ -27,18 +49,14 @@ function displayMenu() {
         const userChoice = answers.homescreen;
 
         if (userChoice === 'View All Employees') {
-            const viewAllEmployeesQuery = `
-                SELECT employees.id AS id, employees.first_name AS first_name, employees.last_name AS last_name, roles.title AS title, department.department_name AS department, roles.salary AS salary, CONCAT(managers.first_name, " ", managers.last_name) AS manager
-                FROM employees
-                JOIN roles ON employees.role_id = roles.id
-                JOIN department ON roles.department_id = department.id
-                LEFT JOIN employees AS managers ON employees.manager_id = managers.id;
-            `;
             connection.query(viewAllEmployeesQuery, (err, results) => {
-                if (err) console.error;
-                console.log('');
-                console.table(results);
-                displayMenu();
+                if (err) {
+                    console.error(err); // Logging the error
+                } else {
+                    console.log('');
+                    console.table(results);
+                    displayMenu();
+                }
             });
         } else if (userChoice === 'Add Employee') {
             console.log('Please add an employee!');
@@ -111,13 +129,13 @@ function displayMenu() {
                     displayMenu();
                 });
             });
-        }
-
-        else if (userChoice === 'Quit') {
+        } else if (userChoice === 'Quit') {
             console.log('Exiting application');
             connection.end();
             return;
         }
+    }).catch((error) => {
+        console.error(error); // Handle any unhandled promise rejections
     });
 }
 
