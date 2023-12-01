@@ -13,8 +13,8 @@ INSERT INTO roles (title, salary, department_id)
     ("Accountant", 50000, 3);
     INSERT INTO employees (first_name, last_name, role_id, manager_id)
     VALUES
-    ("Finn", "Human", 3, null),
-    ("Jake", "Dog", 3, 1),
-    ("Bobby", "Lee", 3, 1),
-    ("Theo", "Von", 4, null),
-    ("Tom", "Segura", 4, 4);
+    ("Billy", "Bob", 3, null),
+    ("Jake", "Snake", 3, 1),
+    ("James", "Fame", 3, 1),
+    ("Ash", "Ketchum", 4, null),
+    ("Mister", "Man", 4, 4);

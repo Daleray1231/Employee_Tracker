@@ -10,7 +10,7 @@ const connection = mysql.createConnection({
 });
 
 connection.connect((err) => {
-    if (err) throw err;
+    if (err) console.error;
     console.log('Connected to the database');
     displayMenu();
 });
@@ -35,7 +35,7 @@ function displayMenu() {
                 LEFT JOIN employees AS managers ON employees.manager_id = managers.id;
             `;
             connection.query(viewAllEmployeesQuery, (err, results) => {
-                if (err) throw err;
+                if (err) console.error;
                 console.log('');
                 console.table(results);
                 displayMenu();
@@ -106,13 +106,13 @@ function displayMenu() {
 
                 const addEmployeeInformation = `INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`;
                 connection.query(addEmployeeInformation, [firstName, lastName, idNumberAssigned, managerChoice], (err, insertResult) => {
-                    if (err) throw err;
+                    if (err) console.error;
                     console.log('Employee added successfully!');
                     displayMenu();
                 });
             });
         }
-        // ... other choices with similar logic
+
         else if (userChoice === 'Quit') {
             console.log('Exiting application');
             connection.end();
