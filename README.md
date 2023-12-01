@@ -10,7 +10,7 @@ This Employee Tracker is a command-line application that allows users to manage 
 
 2. **Database Setup:**
 
-   Set up your MySQL database. Modify the `connection` configuration in `index.js` with your database details.
+   Set up your MySQL database. Modify the `connection` configuration in `connection.js`, `index.js` and the `.env` with your database details.
 
 3. **Run the Application:**
 
@@ -29,4 +29,4 @@ This Employee Tracker is a command-line application that allows users to manage 
 
 ## GitHub Repository
 
-Find the complete code for this Employee Tracker app on [GitHub](https://github.com/YOUR_USERNAME/employee-tracker).
+Find the complete code for this Employee Tracker app on [GitHub](https://github.com/Daleray1231/employee_tracker).

@@ -5,7 +5,7 @@ const mysql = require('mysql2');
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'Karah712!',
+    password: 'rootroot',
     database: 'company_db',
 });
 
@@ -31,6 +31,21 @@ function viewAllEmployees() {
 
 function addEmployee() {
     console.log('Please add an employee!');
+    // Fetch roles from the database
+    const fetchRolesQuery = `SELECT id, title FROM roles`;
+
+    connection.query(fetchRolesQuery, (err, roles) => {
+        if (err) {
+            console.error('Error fetching roles:', err);
+            displayMenu();
+        } else {
+            const roleChoices = roles.map((role) => ({
+                name: role.title,
+                value: role.id,
+            }));
+        }
+    });
+
     inquirer.prompt([
         {
             type: 'input',
@@ -52,8 +67,9 @@ function addEmployee() {
             type: 'list',
             name: 'managerID',
             message: 'Please select a manager',
-            choices: ['Finn Human', 'Jake Dog', 'Bobby Lee', 'Theo Von', 'Tom Segura'],
+            choices: ['Billy Bob', 'Jake Snake', 'James Fame', 'Ash Ketchum', 'Mister Man'],
         },
+
     ]).then((employeeAnswer) => {
         const { firstName, lastName, roleID, managerID } = employeeAnswer;
         let idNumberAssigned;
