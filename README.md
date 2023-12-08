@@ -30,3 +30,5 @@ This Employee Tracker is a command-line application that allows users to manage 
 ## GitHub Repository
 
 Find the complete code for this Employee Tracker app on [GitHub](https://github.com/Daleray1231/employee_tracker).
+
+For helpful instructions on running this application: [Video Tutorial]()
