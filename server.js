@@ -31,7 +31,6 @@ function viewAllEmployees() {
 
 function addEmployee() {
     console.log('Please add an employee!');
-    // Fetch roles from the database
     const fetchRolesQuery = `SELECT id, title FROM roles`;
 
     connection.query(fetchRolesQuery, (err, roles) => {
@@ -122,7 +121,6 @@ function addEmployee() {
 }
 
 function updateEmployeeRole() {
-    // Fetch employees to display as choices
     const fetchEmployeesQuery = `SELECT id, CONCAT(first_name, ' ', last_name) AS full_name FROM employees`;
     connection.query(fetchEmployeesQuery, (err, employees) => {
         if (err) {
@@ -206,7 +204,6 @@ function viewAllRoles() {
 }
 
 function addRole() {
-    // Fetch departments to display as choices
     const fetchDepartmentsQuery = `SELECT id, department_name FROM department`;
     connection.query(fetchDepartmentsQuery, (err, departments) => {
         if (err) {

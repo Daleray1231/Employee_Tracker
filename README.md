@@ -2,7 +2,7 @@
 
 This command-line application allows users to manage employee data within a company database. It offers functionalities such as viewing all employees, adding/updating employee roles, managing roles, and handling departments.
 
-![alt text](screenshot.png)
+![alt text](images/screenshot.png)
 
 ## Table of Contents
 
